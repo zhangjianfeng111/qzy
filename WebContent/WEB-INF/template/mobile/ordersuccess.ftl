@@ -1,0 +1,87 @@
+<#escape x as x!"">
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+<title>下单成功</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-transform "/>
+<meta name="keywords" content="">
+<meta name="description" content="">  
+<link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/mobile/css/style.css">
+</head>
+<body>
+<div id="a-wrap">
+     <section id="section" class="section">
+         <header id="header" class="header gb">
+            <h2>订单提交成功</h2>
+         </header>
+         <article id="article" class="article">
+             <div class="orderSuccess od-mode">
+                 <div class="myfru-hd">
+                     <div class="myfru-head">
+                         <div class="myfru-info" style="text-align:center">
+                             <h4>我们已收到您的订单</h4>
+                             <h4>支付后会尽快配送</h4>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="form-list-a">
+                     <ul>
+                         <li class="fl-item">
+                             <div class="pbox-list-a pic-120">
+                             <#if infos?has_content>
+							<#list infos as info>
+		                     <ul>
+		                         <li class="list-item">
+		                            <a href="">
+		                                <div class="p-pic"><img src="${request.contextPath}/resources/admin/store/${info.productImage}" alt=""/></div>
+		                                <div class="d-con">
+		                                        <h3 class="d-tit clamp-2">编号:${info.orderCode}</h3>
+		                                        <p class="d-spe">${info.orderTime}</p>
+		                                    <div class="db-con">
+		                                        <h1 class="d-price ot">￥${info.totalFee}</h1> 
+		                                        <span class="ot">${info.shipStatus}</span>
+		                                    </div>
+		                                </div>
+		                            </a>
+		                         </li>
+		                     </ul>
+		                	</#list>
+							</#if>
+                            </div>
+                         </li>
+                     </ul>
+                     <ul>
+                         <li class="tit"><h4>支付信息</h4></li>
+                         <li class="fl-item more"><a href="javascript:;" class="odmode-a"><b class="name">支付方式</b><span class="detail">支付宝付款</span></a></li>
+                     </ul>
+                 </div>
+             </div>
+         </article>
+         <footer class="footer">
+             <div class="form-sub-a fx">
+                 <div class="message ma">
+                     <span class="ot" style="width:100%;display:block"><h4 style="text-align: center;width:100%">请您于30分钟内完成支付<br />否则订单将被取消</h4></span>
+                 </div>
+                 <div class="action">
+                     <div class="act-iner m">
+                     <a href="${request.contextPath}/mobile/product/list/p1" _rha_event="orderCreatedToIdx" _rha_remark="创建订单成功后回首页" class="a-iteam b-green ae"><span>继续购物</span></a>
+                      <form id="form" action="http://m.fruitday.com:80/alipay" method="post">
+                 			<input type="hidden" name="orderName" value="150118185675" />
+                      </form>
+                      <a href="javascript:document.getElementById('form').submit();" class="a-iteam b-orgn ml ae"><span>立即支付</span></a>
+                     </div>
+                 </div>
+             </div>
+         </footer>
+     </section>
+</div>
+</body>
+</html>
+</#escape>	

@@ -1,0 +1,119 @@
+
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+    <title>编辑收货地址</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-transform "/>
+<meta name="keywords" content=" ">
+<meta name="description" content="">  
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+</head>
+    <body class="f4b">
+<div id="a-wrap">
+    <section id="section" class="section">
+        <header id="header" class="header gb">
+            <h2>编辑收货地址</h2>
+            <nav>
+                <a class="iback" href="javascript:history.go(-1);"></a>
+            </nav>
+        </header>
+        <div class="addressEdit" >
+            <article id="article" class="article" >
+                <form name="theForm" id="theForm" action="" method="POST">
+                <div class="form-list-a" style="margin-top: 10px;background: #fff;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
+                    <ul>
+                        <li class="fl-item">
+                            <b class="name">收货人</b>
+                            <span class="detail"><input type="text" id="cu_name" name="name" value="俞屠娜"/></span>
+                            <div class="c"></div>
+                        </li>
+                        <li class="fl-item" id="sfput">
+                            <b class="name">省份</b>
+                            <span class="detail more">
+	                            <div class="myarea">
+	                            	<font id="selectProvince">浙江省</font>
+	                            </div>
+                            </span>
+                            <select style="width:0px;display:block;height:0px;" id="sfsel" onchange="changesf()">
+                                <option value="1"  selected="selected">111</option>
+                                <option value="2">222</option>
+                            </select>
+                            <div class="c"></div>
+                        </li>
+                        <li class="fl-item" id="csput">
+                            <b class="name">城市</b>
+                            <span class="detail more">
+                                <div class="myarea">
+                                    <font id="selectCity">杭州市</font>
+                                </div>
+                            </span>
+                            <select style="width:0px;display:block;height:0px;" id="cssel" onchange="changecs()">
+                                <option value="1"  selected="selected">111</option>
+                                <option value="2">222</option>
+                            </select>
+                            <div class="c"></div>
+                        </li>
+                        <li class="fl-item"  id="qyput">
+                            <b class="name">区域</b>
+                            <span class="detail more">
+                                <div class="myarea">
+                                    <font id="selectArea">西湖区</font>
+                                </div>
+                            </span>
+                            <select style="width:0px;display:block;height:0px;" id="qysel" onchange="changeqy()">
+                                <option value="1"  selected="selected">111</option>
+                                <option value="2">222</option>
+                            </select>
+                            <div class="c"></div>
+                        </li>
+                        <li class="fl-item">
+                            <b class="name">详细地址</b>
+                            <span class="detail">
+                                <textarea name="address" id="cu_address">浙大科技园b楼606</textarea>
+                            </span>
+                            <div class="c"></div>
+                        </li>
+                        <li class="fl-item">
+                            <b class="name">联系方式</b>
+                            <span class="detail"><input type="text" id="cu_telephone" name="telephone" value="15957192246"/></span>
+                            <div class="c"></div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </article>
+<!--            <article style="background:#fff;margin-top: 10px">
+               <div class="form-list-a" style="border-top: 1px solid #ccc;">
+                    <ul>
+                        <li class="fl-item">
+                            <b class="name">设为默认地址</b>
+                            <span class="detail silde-btn unpick_" style="position: absolute"><i></i></span>
+                        </li>
+                    </ul>
+                </div>
+             </article>-->
+        </div>
+        <footer class="footer" >
+            <div class="form-sub-a" style="background:#f4f4f4">
+                <div class="action">
+                    <div class="act-iner ma">
+                        <a href="javascript:void(0);" onclick="submitInfo();" class="a-iteam b-orgn ml"><span>保存</span></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
+</body>
+ 
+
+</html>

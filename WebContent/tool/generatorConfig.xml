@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!-- 修改成本地的地址 -->
+	<classPathEntry location="/Users/zgdcool/Documents/workspace/qzy/WebContent/tool/mysql-connector-java-5.1.27.jar" />
+	<context id="context1">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://123.57.14.162/qzy" userId="root"
+			password="Zgd_352067912F_d" />
+		<javaModelGenerator targetPackage="com.qzy.cn.entity"
+			targetProject="qzy/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.qzy.cn.mapper"
+			targetProject="qzy/src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator targetPackage="com.qzy.cn.mapper"
+			targetProject="qzy/src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<!-- 表，仅仅需要更改表名就可 -->
+		<!-- <table tableName="lh_cus_info" modelType="flat" domainObjectName="user.CusInfo"
+			enableInsert="true" enableSelectByPrimaryKey="true"
+			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"
+			enableCountByExample="false" enableUpdateByExample="false"
+			escapeWildcards="true">
+		</table> -->
+		 <table tableName="category" modelType="flat" domainObjectName="pro.Category"
+			enableInsert="true" enableSelectByPrimaryKey="true"
+			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"
+			enableCountByExample="false" enableUpdateByExample="false"
+			escapeWildcards="true">
+		</table>
+		<!--  <table tableName="lh_cus_receiver" modelType="flat" domainObjectName="user.CusReceiver"
+			enableInsert="true" enableSelectByPrimaryKey="true"
+			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"
+			enableCountByExample="false" enableUpdateByExample="false"
+			escapeWildcards="true">
+		</table>
+		<table tableName="lh_cus_visit_record" modelType="flat" domainObjectName="user.CusVisitRecord"
+			enableInsert="true" enableSelectByPrimaryKey="true"
+			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"
+			enableCountByExample="false" enableUpdateByExample="false"
+			escapeWildcards="true">
+		</table>
+		-->
+		<!-- <table tableName="lh_ord_order_product" modelType="flat" domainObjectName="LhOrdOrderProduct"
+			enableInsert="true" enableSelectByPrimaryKey="true"
+			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"
+			enableCountByExample="false" enableUpdateByExample="false"
+			escapeWildcards="true">
+		</table>
+		<table tableName="lh_ord_record" modelType="flat" domainObjectName="LhOrdRecord"
+			enableInsert="true" enableSelectByPrimaryKey="true"
+			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"
+			enableCountByExample="false" enableUpdateByExample="false"
+			escapeWildcards="true">
+		</table>
+		<table tableName="lh_ord_refund" modelType="flat" domainObjectName="LhOrdRefund"
+			enableInsert="true" enableSelectByPrimaryKey="true"
+			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"
+			enableCountByExample="false" enableUpdateByExample="false"
+			escapeWildcards="true">
+		</table>
+		<table tableName="lh_ord_refund_product" modelType="flat" domainObjectName="LhOrdRefundProduct"
+			enableInsert="true" enableSelectByPrimaryKey="true"
+			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"
+			enableCountByExample="false" enableUpdateByExample="false"
+			escapeWildcards="true">
+		</table>
+		<table tableName="lh_ord_shopping_cart" modelType="flat" domainObjectName="LhOrdShoppingCart"
+			enableInsert="true" enableSelectByPrimaryKey="true"
+			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"
+			enableCountByExample="false" enableUpdateByExample="false"
+			escapeWildcards="true">
+		</table> -->
+	</context>
+</generatorConfiguration>

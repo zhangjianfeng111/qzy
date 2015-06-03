@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> 查询条件sql </title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    -->
+
+<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+	
+		$("#submitButton").bind("click",function(){
+			var updateSqlWhere= $("#valitorFileds").val();
+			console.log(updateSqlWhere);
+// 			null" >
+			var andRegex = new  RegExp("null\" >","g");
+			var queryWhere = updateSqlWhere.replace(andRegex,"null\"> and").replace(/},/g,"}");
+			
+			$("#valitorFiledsJsDiv").html(queryWhere);
+		})
+	})
+	
+</script>
+</head>
+
+<body>
+	<br>
+	<center>useGeneratedKeys="true" keyProperty="compId"(类主键)</center>	
+	<center>update sql 改 selectQuery</center>
+	<center>
+		
+		<table>
+			<tr>
+				<td><textarea id="valitorFileds"
+						style="width:500px;height:100px;"></textarea>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<button id="submitButton" > submitButton</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					
+					<textarea id="valitorFiledsJsDiv"
+						style="width:500px;height:500px;"></textarea>
+				</td>
+			</tr>
+		</table>
+	</center>
+</body>
+</html>

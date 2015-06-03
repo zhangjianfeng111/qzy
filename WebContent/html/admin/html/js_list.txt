@@ -1,0 +1,68 @@
+js 文件都为utf-8编码。
+
+ace.min.js
+见ace.js 注释
+
+ace-elements.min.js
+见ace-elements.js 注释
+
+ace-extra.min.js
+见ace-extra.js 注释，定制化用于ace及cookie和localStorage的使用
+
+jquery.validate.min.js
+additional-methods.min.js //自定义 validate 验证函数
+表单验证及自定义的验证方法
+http://jqueryvalidation.org/
+http://www.w3cschool.cc/jquery/jquery-plugin-validate.html
+
+bootstrap-tag.min.js@不使用
+输入框 标签（不支持ie8）
+
+bootstrap-colorpicker.min.js@不使用
+颜色选择器
+
+chosen.jquery.min.js
+select 选择、筛选
+http://harvesthq.github.io/chosen/
+
+dropzone.min.js@不使用
+拖拽上传文件
+http://www.dropzonejs.com/
+
+fullcalendar.min.js@不使用
+仿谷歌日历安排
+http://arshaw.com/fullcalendar/
+
+html5shiv.js@通用
+兼容html5的标签
+
+jquery.autosize.min.js
+textarea自动大小
+http://www.jacklmoore.com/autosize/
+
+jquery.dataTables.bootstrap.js
+jquery.dataTables.min.js
+表格
+
+jquery.easy-pie-chart.min.js
+圆饼画图
+
+jquery.gritter.min.js
+消息通知
+http://boedesign.com/demos/gritter/
+
+jquery.slimscroll.min.js
+类似实现overflow auto
+http://rocha.la/jQuery-slimScroll/
+
+respond.min.js
+让IE兼容media。不支持跨域
+
+jquery.sparkline.min.js
+画趋势图
+http://omnipotent.net/jquery.sparkline/#s-about
+
+
+Bootbox.min.js
+弹框alert、Confirm 、Prompt、Custom Dialog
+http://bootboxjs.com/

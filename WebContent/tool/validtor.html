@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>validtor.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    -->
+
+<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://kf.mopo.com/maogepao/resources/js/validate_check.js"></script>
+<script src="http://kf.mopo.com/maogepao/resources/js/createValitorJs.js"></script>
+
+</head>
+
+<body>
+		前台验证规则 js
+	<br>
+	<center>
+		<table>
+			<tr>
+				<td>
+					使用条件:输入 input 的id,逗号隔开, 加验证
+					错误消息提示   id:  idError,   class="check_error", 
+					
+					对  uf 定义全局变量
+					<p>
+					function saveCheck(key, url, toUrl){
+						if(uf.validate()){
+							saveForm(key,url,toUrl);
+						}
+					}
+					<p>	
+				</td>
+			</tr>
+			<tr>
+				<td><textarea id="valitorFileds"
+						style="width:500px;height:100px;"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>验证的集合名称<input type="text" id="submitButton" value="uf"/>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<button id="createVailtorJs" onclick="createVailtorFun()">create
+						vailtor js</button>
+				</td>
+			</tr>
+			<!--     	<tr> -->
+			<!--     		<td> -->
+			<!--     		  <textarea id="valitorFiledsJs" rows="10" cols="10">111</textarea> -->
+			<!--     		</td> -->
+			<!--     	</tr> -->
+			<tr>
+				<td>
+					<div id="valitorFiledsJsDiv"></div>
+				</td>
+			</tr>
+		</table>
+	</center>
+</body>
+</html>

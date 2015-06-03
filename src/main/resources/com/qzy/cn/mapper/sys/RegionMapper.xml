@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzy.cn.mapper.sys.RegionMapper" >
+  <resultMap id="BaseResultMap" type="com.qzy.cn.entity.sys.Region" >
+    <id column="region_id" property="regionId" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="region_name" property="regionName" jdbcType="VARCHAR" />
+    <result column="region_order" property="regionOrder" jdbcType="INTEGER" />
+    <result column="region_level" property="regionLevel" jdbcType="INTEGER" />
+    <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    region_id, parent_id, region_name, region_order, region_level, region_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from lh_sys_region
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </select>
+  <select id="query" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from lh_sys_region
+    where 1 = 1
+      <if test="parentId != null" >
+        and parent_id = #{parentId,jdbcType=INTEGER}
+      </if>
+      <if test="regionName != null" >
+        and region_name = #{regionName,jdbcType=VARCHAR}
+      </if>
+      <if test="regionOrder != null" >
+        and region_order = #{regionOrder,jdbcType=INTEGER}
+      </if>
+      <if test="regionLevel != null" >
+        and region_level = #{regionLevel,jdbcType=INTEGER}
+      </if>
+      <if test="regionCode != null" >
+        and region_code = #{regionCode,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" >
+    delete from lh_sys_region
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" >
+    insert into lh_sys_region (region_id, parent_id, region_name, 
+      region_order, region_level, region_code
+      )
+    values (#{regionId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR}, 
+      #{regionOrder,jdbcType=INTEGER}, #{regionLevel,jdbcType=INTEGER}, #{regionCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="regionId">
+    insert into lh_sys_region
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="regionName != null" >
+        region_name,
+      </if>
+      <if test="regionOrder != null" >
+        region_order,
+      </if>
+      <if test="regionLevel != null" >
+        region_level,
+      </if>
+      <if test="regionCode != null" >
+        region_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regionId != null" >
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="regionName != null" >
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionOrder != null" >
+        #{regionOrder,jdbcType=INTEGER},
+      </if>
+      <if test="regionLevel != null" >
+        #{regionLevel,jdbcType=INTEGER},
+      </if>
+      <if test="regionCode != null" >
+        #{regionCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" >
+    update lh_sys_region
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="regionName != null" >
+        region_name = #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionOrder != null" >
+        region_order = #{regionOrder,jdbcType=INTEGER},
+      </if>
+      <if test="regionLevel != null" >
+        region_level = #{regionLevel,jdbcType=INTEGER},
+      </if>
+      <if test="regionCode != null" >
+        region_code = #{regionCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" >
+    update lh_sys_region
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      region_name = #{regionName,jdbcType=VARCHAR},
+      region_order = #{regionOrder,jdbcType=INTEGER},
+      region_level = #{regionLevel,jdbcType=INTEGER},
+      region_code = #{regionCode,jdbcType=VARCHAR}
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </update>
+</mapper>

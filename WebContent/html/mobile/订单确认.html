@@ -1,0 +1,115 @@
+
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+    <title>填写订单</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-transform "/>
+<meta name="keywords" content=" ">
+<meta name="description" content="">  
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+</head>
+
+<body>
+<div id="a-wrap" style="overflow:hidden">
+    <section id="section" class="section" >
+        <header id="header" class="header gb">
+            <h2>订单确认</h2>
+            <nav>
+                <a class="iback left" href="javascript:history.go(-1);"></a>
+            </nav>
+        </header>
+        <article id="article" class="article">
+            <div class="orderSub">
+                <div class="form-list-a">
+                    <ul>
+                    	<li class="tit"><h4>送货地址</h4></li>
+               			
+                    	
+                    		
+                    			<li class="fl-item more foucs"><a href="收货地址.html">请确认收货地址</a></li>
+                    		
+                    		
+                    	
+                    </ul>
+                    <ul>
+                        <li class="tit">
+                        <h4>
+	                        发票信息
+                        </h4>
+                        </li>
+                        <li class="fl-item nobd">
+                            <input type="checkbox" style="height:auto;width:auto;" id="fapiao"/> <b class="name"> 需要发票</b>
+                        </li>
+                        <li class="fl-item more od_hide_obj"  name="off" style="display:none" id="fapx"><a href="发票.html"><b class="name">发票抬头</b>
+                        <span id="txtDetail" class="detail">
+                        </span>
+                        </a></li>
+                    </ul>
+                    <ul>
+                        <li class="tit"><h4>备注</h4></li>
+                        <li class="fl-item"><b class="name textarea"><textarea  name="msg" id="msg" cols="30" rows="3" placeholder="若您对订单有特殊要求,可在此留言"></textarea></b></li>
+                    </ul>
+                    <ul>
+                        <li class="tit"><h4>商品清单</h4></li>
+                        <li class="fl-item">
+                            <div class="pbox-list-a pic-70">
+                                <ul>
+                                   
+                                   		<li>
+	                                       <a href="http://m.fruitday.com:80/pro/1924" class="list-item more">
+	                                           <div class="od-header"></div>
+	                                               <div class="p-pic"><img src="http://cdn.fruitday.com/product_pic/1924/1/1-180x180-1924.jpg" alt=""/></div>
+	                                               <div class="d-con">
+	                                                    <h3 class="d-tit clamp-1">魅姿套餐</h3>
+	                                                    <p class="d-spe">小包装盒/盒</p>
+	                                                    <div class="db-con">
+	                                                        <h1 class="d-price ot">￥28</h1> 
+	                                                        
+	                                                    </div>
+	                                                    <p class="d-num">x 1</p>
+	                                               </div>
+	                                           <div class="od-footer"></div>
+	                                       </a>
+	                                   </li>
+                                   
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="tit"><h4>价格清单</h4></li>
+                        <li class="fl-item"><b class="name">商品总价</b><span class="detail ot s" id="productPrice">￥28.0</span></li>
+                        <li class="fl-item"><b class="name">运费</b><span class="detail ot s" id="postFee">
+                        ￥0
+                        </span></li>
+                        <li class="fl-item"><b class="name">余额抵扣</b><span class="detail" id="jfDisCount">-￥0</span></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <footer class="footer">
+            <div class="form-sub-a fx">
+               <div class="action">
+                    <div class="act-iner m">
+                        <span class="a-iteam a-msg" ><u>合计:<i class="ot s">￥<em id="totalPrice">28.0</em></i></u></span>
+                        <a id="btnCreateOrder"  href="javascript:;" class="a-iteam b-orgn ae"><span>提交订单</span></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
+</body>
+
+
+
+</html>

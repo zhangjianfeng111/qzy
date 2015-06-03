@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+    <title>我的购物车</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-transform "/>
+<meta name="keywords" content=" ">
+<meta name="description" content="">  
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+</head>
+
+<body>
+<div id="a-wrap">
+    <section id="section" class="section">
+        <header id="header" class="header gb">
+            <h2>购物车</h2>
+            <nav>
+                <a class="iback left" href="javascript:history.go(-1);"></a>
+                <a class="idel right " href="javascript:;"  onclick="cartDelPro(this)"><span>完成</span></a>
+            </nav>
+        </header>
+        <article id="article" class="article">
+            <div class="myCart">
+                            <div class="pbox-list-a pic-70 buys" id="cartPro">
+			                    <ul>
+	                    				<li>
+				                           <div class="list-item p">
+				                               <div class="p-pic"><img src="http://cdn.fruitday.com/product_pic/1924/1/1-180x180-1924.jpg" alt="魅姿套餐"></div>
+				                               <div class="d-con">
+				                                    <a href="http://m.fruitday.com:80/pro/1924">
+				                                        <h3 class="d-tit clamp-1">魅姿套餐</h3>
+				                                    </a>
+				                                    <p class="d-spe">小包装盒/盒</p>
+				                                    <div class="db-con">
+				                                        ￥<h1 class="d-price ot">28</h1> 
+				                                    </div>
+				                                    <div class="num_sel_lage fr" data-sku-id="2649">
+				                                        <div id="inC" class="inC">-</div>
+				                                        <input type="text" class="qty" id="qty" value="1">
+				                                        <div id="deC" class="deC">+</div>
+				                                    </div>
+				                                    <div class="c"></div>
+				                               </div>
+				                           </div>
+				                           <div class="del-item" data-sku-id="2649"><a href="javascript:;"><h2>删除</h2></a></div>
+				                       </li>
+		                   		</ul>
+			                 </div>
+
+            </div>
+        </article>
+
+
+
+
+<footer class="footer">
+    <div class="form-sub-a fx">
+    	 
+    	 	<div class="action" style="border-bottom:1px solid #ccc;padding: 5px 0">
+    	 	<div id="noticeCont">
+               	<div class="notice">满300元赠 "新奇士美国柠檬6个装" 1份 还差￥272</div>
+               	<div class="notice"></div>
+    	 	</div>
+                <div class="act-iner m">
+                    <span class="a-iteam a-msg" ><u>合计:<i class="ot s">￥<em id="ttp">28.0</em></i></u></span>
+                    <a   href="订单确认.html" class="a-iteam b-orgn ae"><span>去结算</span></a>
+                </div>
+            </div>
+    	 
+         <div class="nav">
+            <ul class="nav-iner">
+                <li><a href="index.html" class="a-iteam "><div class="ftnav-home"></div><span>首页</span></a></li>
+                <li><a href="类别.html" class="a-iteam "><div class="ftnav-sort"></div><span>品类</span></a></li>
+               	<li><a href="我的订单.html" class="a-iteam "><div class="ftnav-myfru"></div><span>我的订单</span></a></li>
+                <li><a href="购物车.html" class="a-iteam cur"><div class="ftnav-cart"><i id="cartCount">0</i></div><span>购物车</span></a></li>
+                <li><a href="更多.html" class="a-iteam"><div class="ftnav-more"></div><span>更多</span></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+    </section>
+</div>
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+</html>

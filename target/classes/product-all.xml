@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<wsse:Security
+			xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			soap:mustUnderstand="1">
+			<wsse:UsernameToken wsu:Id="UsernameToken-3">
+				<wsse:Username>tuniu</wsse:Username>
+				<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">tuniu6743</wsse:Password>
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</soap:Header>
+	<soap:Body>
+		<ns2:GetAvailability xmlns:ns2="http://experienceoz.com.au/">
+			<AvailabilityRequest>
+				<StartDate>2015-05-27T00:00:00.000+10:00</StartDate>
+				<ProductId>4173</ProductId>
+			</AvailabilityRequest>
+		</ns2:GetAvailability>
+	</soap:Body>
+</soap:Envelope>
+
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<wsse:Security
+			xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:wsu="http://docs.oasisopen.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			soap:mustUnderstand="1">
+			<wsse:UsernameToken wsu:Id="UsernameToken-3">
+				<wsse:Username>tuniu</wsse:Username>
+				<wsse:Password
+					Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">tuniu6743</wsse:Password>
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</soap:Header>
+	<soap:Body>
+		<ns2:GetAvailability xmlns:ns2="http://experienceoz.com.au/">
+			<AvailabilityRequest>
+				<StartDate>2015-05-27T00:00:00.000+10:00</StartDate>
+				<ProductId>4173</ProductId>
+			</AvailabilityRequest>
+		</ns2:GetAvailability>
+	</soap:Body>
+</soap:Envelope>

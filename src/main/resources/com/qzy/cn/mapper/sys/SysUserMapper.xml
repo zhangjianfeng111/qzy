@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzy.cn.mapper.sys.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.qzy.cn.entity.sys.SysUser" >
+    <id column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="account_status" property="accountStatus" jdbcType="BIT" />
+    <result column="comp_id" property="compId" jdbcType="INTEGER" />
+    <result column="qfc_account_id" property="qfcAccountId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    account_id, real_name, user_name, password, mobile, email, account_status, comp_id, 
+    qfc_account_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lh_sys_account
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </select>
+  
+   <select id="loadByUserName" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from lh_sys_account
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lh_sys_account
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qzy.cn.entity.sys.SysUser" >
+    insert into lh_sys_account (account_id, real_name, user_name, 
+      password, mobile, email, 
+      account_status, comp_id, qfc_account_id
+      )
+    values (#{accountId,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{accountStatus,jdbcType=BIT}, #{compId,jdbcType=INTEGER}, #{qfcAccountId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="accountId"  parameterType="com.qzy.cn.entity.sys.SysUser" >
+    insert into lh_sys_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="accountStatus != null" >
+        account_status,
+      </if>
+      <if test="compId != null" >
+        comp_id,
+      </if>
+      <if test="qfcAccountId != null" >
+        qfc_account_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null" >
+        #{accountStatus,jdbcType=BIT},
+      </if>
+      <if test="compId != null" >
+        #{compId,jdbcType=INTEGER},
+      </if>
+      <if test="qfcAccountId != null" >
+        #{qfcAccountId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+   <select id="query" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from lh_sys_account
+    where 1=1
+     <if test="realName != null" > and
+        real_name = #{realName,jdbcType=VARCHAR}
+      </if>
+      <if test="userName != null" > and
+        user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null" > and
+        password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="mobile != null" > and
+        mobile = #{mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null" > and
+        email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="accountStatus != null" > and
+        account_status = #{accountStatus,jdbcType=BIT}
+      </if>
+      <if test="compId != null" > and
+        comp_id = #{compId,jdbcType=INTEGER}
+      </if>
+      <if test="qfcAccountId != null" > and
+        qfc_account_id = #{qfcAccountId,jdbcType=BIGINT}
+      </if>
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.qzy.cn.entity.sys.SysUser" >
+    update lh_sys_account
+    <set >
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null" >
+        account_status = #{accountStatus,jdbcType=BIT},
+      </if>
+      <if test="compId != null" >
+        comp_id = #{compId,jdbcType=INTEGER},
+      </if>
+      <if test="qfcAccountId != null" >
+        qfc_account_id = #{qfcAccountId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qzy.cn.entity.sys.SysUser" >
+    update lh_sys_account
+    set real_name = #{realName,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      account_status = #{accountStatus,jdbcType=BIT},
+      comp_id = #{compId,jdbcType=INTEGER},
+      qfc_account_id = #{qfcAccountId,jdbcType=BIGINT}
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </update>
+</mapper>
