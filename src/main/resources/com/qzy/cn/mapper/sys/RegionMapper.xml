@@ -3,125 +3,221 @@
 <mapper namespace="com.qzy.cn.mapper.sys.RegionMapper" >
   <resultMap id="BaseResultMap" type="com.qzy.cn.entity.sys.Region" >
     <id column="region_id" property="regionId" jdbcType="INTEGER" />
-    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
-    <result column="region_name" property="regionName" jdbcType="VARCHAR" />
-    <result column="region_order" property="regionOrder" jdbcType="INTEGER" />
-    <result column="region_level" property="regionLevel" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="order_sort" property="orderSort" jdbcType="INTEGER" />
+    <result column="image_logo" property="imageLogo" jdbcType="VARCHAR" />
+    <result column="images" property="images" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="is_use" property="isUse" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="more1" property="more1" jdbcType="VARCHAR" />
+    <result column="more2" property="more2" jdbcType="INTEGER" />
+    <result column="more3" property="more3" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    region_id, parent_id, region_name, region_order, region_level, region_code
+    region_id, name, region_code, parent_id, order_sort, image_logo, images, quantity, 
+    is_use, create_time, create_user, update_time, update_user, more1, more2, more3
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from lh_sys_region
+    from region
     where region_id = #{regionId,jdbcType=INTEGER}
   </select>
-  <select id="query" resultMap="BaseResultMap" >
-    select 
-    <include refid="Base_Column_List" />
-    from lh_sys_region
-    where 1 = 1
-      <if test="parentId != null" >
-        and parent_id = #{parentId,jdbcType=INTEGER}
-      </if>
-      <if test="regionName != null" >
-        and region_name = #{regionName,jdbcType=VARCHAR}
-      </if>
-      <if test="regionOrder != null" >
-        and region_order = #{regionOrder,jdbcType=INTEGER}
-      </if>
-      <if test="regionLevel != null" >
-        and region_level = #{regionLevel,jdbcType=INTEGER}
-      </if>
-      <if test="regionCode != null" >
-        and region_code = #{regionCode,jdbcType=VARCHAR}
-      </if>
-  </select>
-  <delete id="deleteByPrimaryKey" >
-    delete from lh_sys_region
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from region
     where region_id = #{regionId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" >
-    insert into lh_sys_region (region_id, parent_id, region_name, 
-      region_order, region_level, region_code
-      )
-    values (#{regionId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR}, 
-      #{regionOrder,jdbcType=INTEGER}, #{regionLevel,jdbcType=INTEGER}, #{regionCode,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.qzy.cn.entity.sys.Region" >
+    insert into region (region_id, name, region_code, 
+      parent_id, order_sort, image_logo, 
+      images, quantity, is_use, 
+      create_time, create_user, update_time, 
+      update_user, more1, more2, 
+      more3)
+    values (#{regionId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{regionCode,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{orderSort,jdbcType=INTEGER}, #{imageLogo,jdbcType=VARCHAR}, 
+      #{images,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, #{isUse,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{more1,jdbcType=VARCHAR}, #{more2,jdbcType=INTEGER}, 
+      #{more3,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="regionId">
-    insert into lh_sys_region
+  <insert id="insertSelective" parameterType="com.qzy.cn.entity.sys.Region" >
+    insert into region
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="regionId != null" >
         region_id,
       </if>
-      <if test="parentId != null" >
-        parent_id,
-      </if>
-      <if test="regionName != null" >
-        region_name,
-      </if>
-      <if test="regionOrder != null" >
-        region_order,
-      </if>
-      <if test="regionLevel != null" >
-        region_level,
+      <if test="name != null" >
+        name,
       </if>
       <if test="regionCode != null" >
         region_code,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="orderSort != null" >
+        order_sort,
+      </if>
+      <if test="imageLogo != null" >
+        image_logo,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="isUse != null" >
+        is_use,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="more1 != null" >
+        more1,
+      </if>
+      <if test="more2 != null" >
+        more2,
+      </if>
+      <if test="more3 != null" >
+        more3,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="regionId != null" >
         #{regionId,jdbcType=INTEGER},
       </if>
-      <if test="parentId != null" >
-        #{parentId,jdbcType=INTEGER},
-      </if>
-      <if test="regionName != null" >
-        #{regionName,jdbcType=VARCHAR},
-      </if>
-      <if test="regionOrder != null" >
-        #{regionOrder,jdbcType=INTEGER},
-      </if>
-      <if test="regionLevel != null" >
-        #{regionLevel,jdbcType=INTEGER},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="regionCode != null" >
         #{regionCode,jdbcType=VARCHAR},
       </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSort != null" >
+        #{orderSort,jdbcType=INTEGER},
+      </if>
+      <if test="imageLogo != null" >
+        #{imageLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="more1 != null" >
+        #{more1,jdbcType=VARCHAR},
+      </if>
+      <if test="more2 != null" >
+        #{more2,jdbcType=INTEGER},
+      </if>
+      <if test="more3 != null" >
+        #{more3,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" >
-    update lh_sys_region
+  <update id="updateByPrimaryKeySelective" parameterType="com.qzy.cn.entity.sys.Region" >
+    update region
     <set >
-      <if test="parentId != null" >
-        parent_id = #{parentId,jdbcType=INTEGER},
-      </if>
-      <if test="regionName != null" >
-        region_name = #{regionName,jdbcType=VARCHAR},
-      </if>
-      <if test="regionOrder != null" >
-        region_order = #{regionOrder,jdbcType=INTEGER},
-      </if>
-      <if test="regionLevel != null" >
-        region_level = #{regionLevel,jdbcType=INTEGER},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="regionCode != null" >
         region_code = #{regionCode,jdbcType=VARCHAR},
       </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSort != null" >
+        order_sort = #{orderSort,jdbcType=INTEGER},
+      </if>
+      <if test="imageLogo != null" >
+        image_logo = #{imageLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="isUse != null" >
+        is_use = #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="more1 != null" >
+        more1 = #{more1,jdbcType=VARCHAR},
+      </if>
+      <if test="more2 != null" >
+        more2 = #{more2,jdbcType=INTEGER},
+      </if>
+      <if test="more3 != null" >
+        more3 = #{more3,jdbcType=VARCHAR},
+      </if>
     </set>
     where region_id = #{regionId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" >
-    update lh_sys_region
-    set parent_id = #{parentId,jdbcType=INTEGER},
-      region_name = #{regionName,jdbcType=VARCHAR},
-      region_order = #{regionOrder,jdbcType=INTEGER},
-      region_level = #{regionLevel,jdbcType=INTEGER},
-      region_code = #{regionCode,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.qzy.cn.entity.sys.Region" >
+    update region
+    set name = #{name,jdbcType=VARCHAR},
+      region_code = #{regionCode,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      order_sort = #{orderSort,jdbcType=INTEGER},
+      image_logo = #{imageLogo,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      is_use = #{isUse,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      more1 = #{more1,jdbcType=VARCHAR},
+      more2 = #{more2,jdbcType=INTEGER},
+      more3 = #{more3,jdbcType=VARCHAR}
     where region_id = #{regionId,jdbcType=INTEGER}
   </update>
 </mapper>

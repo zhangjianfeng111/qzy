@@ -16,7 +16,7 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.qzy.cn" />
 	<context:component-scan base-package="test" />
-	<context:component-scan base-package="com.lianhai.spring.security" />
+<!-- 	<context:component-scan base-package="com.lianhai.spring.security" /> -->
 	<!-- <context:component-scan base-package="com.phone.cn,com.lianhai.spring.security" /> -->
 <!-- 	<context:component-scan base-package="com.lianhai.spring.security" /> -->
 	

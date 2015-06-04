@@ -159,6 +159,6 @@ public class Category extends BaseEntity<Integer>{
 	@Override
 	public Integer getId() {
 		// TODO Auto-generated method stub
-		return cateId;
+		return null;
 	}
 }

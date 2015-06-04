@@ -93,7 +93,7 @@ public abstract class BaseService<M extends BaseEntity<ID>, ID extends Serializa
 			count = baseRepository
 					.updateByPrimaryKeySelective(updateBaseEnity(m));
 		} else {
-			count = baseRepository.insertSelective(createBaseEnity(m));
+			count = baseRepository.insertSelective(m);
 		}
 		if (count == 1) {
 			return Boolean.TRUE;
