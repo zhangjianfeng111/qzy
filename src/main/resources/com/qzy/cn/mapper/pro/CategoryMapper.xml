@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzy.cn.mapper.pro.CategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.qzy.cn.entity.pro.Category" >
+    <id column="cate_id" property="cateId" jdbcType="INTEGER" />
+    <result column="cate_code" property="cateCode" jdbcType="VARCHAR" />
+    <result column="cate_name" property="cateName" jdbcType="VARCHAR" />
+    <result column="image_logo" property="imageLogo" jdbcType="VARCHAR" />
+    <result column="images" property="images" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="order_sort" property="orderSort" jdbcType="INTEGER" />
+    <result column="is_use" property="isUse" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="more1" property="more1" jdbcType="VARCHAR" />
+    <result column="more2" property="more2" jdbcType="VARCHAR" />
+    <result column="more3" property="more3" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cate_id, cate_code, cate_name, image_logo, images, parent_id, order_sort, is_use, 
+    create_time, create_user, update_time, update_user, more1, more2, more3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from category
+    where cate_id = #{cateId,jdbcType=INTEGER}
+  </select>
+  <select id="query" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from category
+    where 1 = 1 
+      <if test="cateCode != null" >
+        and cate_code = #{cateCode,jdbcType=VARCHAR}
+      </if>
+      <if test="cateName != null" >
+        cate_name = #{cateName,jdbcType=VARCHAR}
+      </if>
+      <if test="parentId != null" >
+        and parent_id = #{parentId,jdbcType=INTEGER}
+      </if>
+      <if test="orderSort != null" >
+        and order_sort = #{orderSort,jdbcType=INTEGER}
+      </if>
+      <if test="isUse != null" >
+        and is_use = #{isUse,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createUser != null" >
+        and create_user = #{createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTime != null" >
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateUser != null" >
+        and update_user = #{updateUser,jdbcType=VARCHAR}
+      </if>
+      <if test="more1 != null" >
+        and more1 = #{more1,jdbcType=VARCHAR}
+      </if>
+      <if test="more2 != null" >
+        and more2 = #{more2,jdbcType=VARCHAR}
+      </if>
+      <if test="more3 != null" >
+        and more3 = #{more3,jdbcType=INTEGER}
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from category
+    where cate_id = #{cateId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qzy.cn.entity.pro.Category" >
+    insert into category (cate_id, cate_code, cate_name, 
+      image_logo, images, parent_id, 
+      order_sort, is_use, create_time, 
+      create_user, update_time, update_user, 
+      more1, more2, more3
+      )
+    values (#{cateId,jdbcType=INTEGER}, #{cateCode,jdbcType=VARCHAR}, #{cateName,jdbcType=VARCHAR}, 
+      #{imageLogo,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{orderSort,jdbcType=INTEGER}, #{isUse,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{more1,jdbcType=VARCHAR}, #{more2,jdbcType=VARCHAR}, #{more3,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qzy.cn.entity.pro.Category" >
+    insert into category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cateId != null" >
+        cate_id,
+      </if>
+      <if test="cateCode != null" >
+        cate_code,
+      </if>
+      <if test="cateName != null" >
+        cate_name,
+      </if>
+      <if test="imageLogo != null" >
+        image_logo,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="orderSort != null" >
+        order_sort,
+      </if>
+      <if test="isUse != null" >
+        is_use,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="more1 != null" >
+        more1,
+      </if>
+      <if test="more2 != null" >
+        more2,
+      </if>
+      <if test="more3 != null" >
+        more3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cateId != null" >
+        #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="cateCode != null" >
+        #{cateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cateName != null" >
+        #{cateName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageLogo != null" >
+        #{imageLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSort != null" >
+        #{orderSort,jdbcType=INTEGER},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="more1 != null" >
+        #{more1,jdbcType=VARCHAR},
+      </if>
+      <if test="more2 != null" >
+        #{more2,jdbcType=VARCHAR},
+      </if>
+      <if test="more3 != null" >
+        #{more3,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qzy.cn.entity.pro.Category" >
+    update category
+    <set >
+      <if test="cateCode != null" >
+        cate_code = #{cateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cateName != null" >
+        cate_name = #{cateName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageLogo != null" >
+        image_logo = #{imageLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSort != null" >
+        order_sort = #{orderSort,jdbcType=INTEGER},
+      </if>
+      <if test="isUse != null" >
+        is_use = #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="more1 != null" >
+        more1 = #{more1,jdbcType=VARCHAR},
+      </if>
+      <if test="more2 != null" >
+        more2 = #{more2,jdbcType=VARCHAR},
+      </if>
+      <if test="more3 != null" >
+        more3 = #{more3,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cate_id = #{cateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qzy.cn.entity.pro.Category" >
+    update category
+    set cate_code = #{cateCode,jdbcType=VARCHAR},
+      cate_name = #{cateName,jdbcType=VARCHAR},
+      image_logo = #{imageLogo,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      order_sort = #{orderSort,jdbcType=INTEGER},
+      is_use = #{isUse,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      more1 = #{more1,jdbcType=VARCHAR},
+      more2 = #{more2,jdbcType=VARCHAR},
+      more3 = #{more3,jdbcType=INTEGER}
+    where cate_id = #{cateId,jdbcType=INTEGER}
+  </update>
+</mapper>

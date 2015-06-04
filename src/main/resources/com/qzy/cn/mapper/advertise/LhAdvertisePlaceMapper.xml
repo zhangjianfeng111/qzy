@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzy.cn.mapper.advertise.LhAdvertisePlaceMapper" >
+  <resultMap id="BaseResultMap" type="com.qzy.cn.entity.advertise.LhAdvertisePlace" >
+    <id column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="area_title" property="areaTitle" jdbcType="VARCHAR" />
+    <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="area_status" property="areaStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="area_desc" property="areaDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    area_id, area_title, area_code, area_status, create_time, create_user, update_time, 
+    update_user,area_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lh_advertise_place
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lh_advertise_place
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qzy.cn.entity.advertise.LhAdvertisePlace" >
+    insert into lh_advertise_place (area_id, area_title, area_code, 
+      area_status, create_time, create_user, 
+      update_time, update_user,area_desc)
+    values (#{areaId,jdbcType=INTEGER}, #{areaTitle,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, 
+      #{areaStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{areaDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qzy.cn.entity.advertise.LhAdvertisePlace" >
+    insert into lh_advertise_place
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaTitle != null" >
+        area_title,
+      </if>
+      <if test="areaCode != null" >
+        area_code,
+      </if>
+      <if test="areaStatus != null" >
+        area_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="areaDesc != null" >
+        area_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaTitle != null" >
+        #{areaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaStatus != null" >
+        #{areaStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDesc != null" >
+        #{areaDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qzy.cn.entity.advertise.LhAdvertisePlace" >
+    update lh_advertise_place
+    <set >
+      <if test="areaTitle != null" >
+        area_title = #{areaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaStatus != null" >
+        area_status = #{areaStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDesc != null" >
+        area_desc = #{areaDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qzy.cn.entity.advertise.LhAdvertisePlace" >
+    update lh_advertise_place
+    set area_title = #{areaTitle,jdbcType=VARCHAR},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      area_status = #{areaStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      area_desc = #{areaDesc,jdbcType=VARCHAR}
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="query" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from lh_advertise_place
+		where 1=1
+      <if test="areaTitle != null" >
+        and area_title like concat('%',#{areaTitle,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="areaCode != null" >
+        and area_code = #{areaCode,jdbcType=VARCHAR}
+      </if>
+      <if test="areaStatus != null" >
+        and area_status = #{areaStatus,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createUser != null" >
+        and create_user = #{createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTime != null" >
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateUser != null" >
+        and update_user = #{updateUser,jdbcType=VARCHAR}
+      </if>
+      <if test="areaDesc != null" >
+        and area_desc = #{areaDesc,jdbcType=VARCHAR}
+      </if>
+		order by update_time desc
+	</select>
+</mapper>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzy.cn.mapper.advertise.LhAdvertiseMapper" >
+  <resultMap id="BaseResultMap" type="com.qzy.cn.entity.advertise.LhAdvertise" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="adv_name" property="advName" jdbcType="VARCHAR" />
+    <result column="adv_body" property="advBody" jdbcType="VARCHAR" />
+    <result column="adv_link_address" property="advLinkAddress" jdbcType="VARCHAR" />
+    <result column="advref_id" property="advrefId" jdbcType="INTEGER" />
+    <result column="adv_type" property="advType" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="adv_desc" property="advDesc" jdbcType="VARCHAR" />
+    <result column="adv_img" property="advImg" jdbcType="VARCHAR" />
+    <result column="order_sort" property="orderSort" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, adv_name, adv_body, adv_link_address, advref_id, adv_type, area_id, adv_desc, 
+    adv_img, create_time, create_user, update_time, update_user, order_sort
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lh_advertise
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lh_advertise
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qzy.cn.entity.advertise.LhAdvertise" >
+    insert into lh_advertise (id, adv_name, adv_body, 
+      adv_link_address, advref_id, adv_type, 
+      area_id, adv_desc, adv_img, 
+      create_time, create_user, update_time, 
+      update_user)
+    values (#{id,jdbcType=INTEGER}, #{advName,jdbcType=VARCHAR}, #{advBody,jdbcType=VARCHAR}, 
+      #{advLinkAddress,jdbcType=VARCHAR}, #{advrefId,jdbcType=INTEGER}, #{advType,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=INTEGER}, #{advDesc,jdbcType=VARCHAR}, #{advImg,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}), #{orderSort,jdbcType=INTEGER}
+  </insert>
+  <insert id="insertSelective" parameterType="com.qzy.cn.entity.advertise.LhAdvertise" >
+    insert into lh_advertise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="advName != null" >
+        adv_name,
+      </if>
+      <if test="advBody != null" >
+        adv_body,
+      </if>
+      <if test="advLinkAddress != null" >
+        adv_link_address,
+      </if>
+      <if test="advrefId != null" >
+        advref_id,
+      </if>
+      <if test="advType != null" >
+        adv_type,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="advDesc != null" >
+        adv_desc,
+      </if>
+      <if test="advImg != null" >
+        adv_img,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="orderSort != null" >
+        order_sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="advName != null" >
+        #{advName,jdbcType=VARCHAR},
+      </if>
+      <if test="advBody != null" >
+        #{advBody,jdbcType=VARCHAR},
+      </if>
+      <if test="advLinkAddress != null" >
+        #{advLinkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="advrefId != null" >
+        #{advrefId,jdbcType=INTEGER},
+      </if>
+      <if test="advType != null" >
+        #{advType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="advDesc != null" >
+        #{advDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="advImg != null" >
+        #{advImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSort != null" >
+        #{orderSort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qzy.cn.entity.advertise.LhAdvertise" >
+    update lh_advertise
+    <set >
+      <if test="advName != null" >
+        adv_name = #{advName,jdbcType=VARCHAR},
+      </if>
+      <if test="advBody != null" >
+        adv_body = #{advBody,jdbcType=VARCHAR},
+      </if>
+      <if test="advLinkAddress != null" >
+        adv_link_address = #{advLinkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="advrefId != null" >
+        advref_id = #{advrefId,jdbcType=INTEGER},
+      </if>
+      <if test="advType != null" >
+        adv_type = #{advType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="advDesc != null" >
+        adv_desc = #{advDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="advImg != null" >
+        adv_img = #{advImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSort != null" >
+        order_sort = #{orderSort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qzy.cn.entity.advertise.LhAdvertise" >
+    update lh_advertise
+    set adv_name = #{advName,jdbcType=VARCHAR},
+      adv_body = #{advBody,jdbcType=VARCHAR},
+      adv_link_address = #{advLinkAddress,jdbcType=VARCHAR},
+      advref_id = #{advrefId,jdbcType=INTEGER},
+      adv_type = #{advType,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      adv_desc = #{advDesc,jdbcType=VARCHAR},
+      adv_img = #{advImg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="query" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from lh_advertise
+		where 1=1
+		 <if test="advName != null" >
+        and adv_name like concat('%',#{advName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="advBody != null" >
+        and adv_body = #{advBody,jdbcType=VARCHAR}
+      </if>
+      <if test="advLinkAddress != null" >
+        and adv_link_address = #{advLinkAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="advrefId != null" >
+        and advref_id = #{advrefId,jdbcType=INTEGER}
+      </if>
+      <if test="advType != null" >
+       and adv_type = #{advType,jdbcType=VARCHAR}
+      </if>
+      <if test="areaId != null" >
+        and area_id = #{areaId,jdbcType=INTEGER}
+      </if>
+      <if test="advDesc != null" >
+        and adv_desc = #{advDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="advImg != null" >
+        and adv_img = #{advImg,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createUser != null" >
+        and create_user = #{createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTime != null" >
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateUser != null" >
+        and update_user = #{updateUser,jdbcType=VARCHAR}
+      </if>
+		order by adv_type 
+	</select>
+</mapper>
