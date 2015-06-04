@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,10 +65,13 @@ public class TestSoap {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
+		Map<Object, Object> firstCate = new HashMap<Object, Object>();
+		Map<Object, Object> secondCate = new HashMap<Object, Object>();
+		
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders hds = createHeaders("6854", "dnRvdXJWVG91ciBUcmF2ZWw=");
 		Object obj = restTemplate.exchange("http://vtour.experienceoz.com.au/api",
-				HttpMethod.POST, new HttpEntity<Object>(hds), String.class);
+				HttpMethod.GET, new HttpEntity<Object>(hds), String.class);
 		Map<String, Object> map = JsonMapper.beanToMap(obj);
 		if(map.get("statusCode").equals("OK")){
 			Map<Object, Object> result = JsonMapper.readStringValueToMap((String) map.get("body"));
@@ -77,11 +81,33 @@ public class TestSoap {
 				String uri = "http://vtour.experienceoz.com.au/api/";
 				uri = uri + map1.get("urlSegment");
 				System.out.println(uri);
-				Object objdetail = restTemplate.exchange(uri, HttpMethod.POST, new HttpEntity<Object>(hds), String.class);
+				Object objdetail = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<Object>(hds), String.class);
 				Map<String, Object> mapdetail = JsonMapper.beanToMap(objdetail);
 				if(mapdetail.get("statusCode").equals("OK")){
 					Map<Object, Object> resultdetail = JsonMapper.readStringValueToMap((String) mapdetail.get("body"));
-					System.out.println(resultdetail);
+					List<Map<String, Object>> list1 = (List<Map<String, Object>>) resultdetail.get("categories");
+					if(list!=null){
+						for (Map<String, Object> map2 : list1) {
+							if(firstCate.get(map2.get("id"))==null){
+								firstCate.put(map2.get("id"), map2);
+							}
+							String uricate = uri + "/";
+							uricate = uricate + map2.get("urlSegment");
+							Object catedetails = restTemplate.exchange(uricate, HttpMethod.GET, new HttpEntity<Object>(hds), String.class);
+							Map<String, Object> catedetail = JsonMapper.beanToMap(catedetails);
+							if(catedetail.get("statusCode").equals("OK")){
+								Map<Object, Object> catedetailbody = JsonMapper.readStringValueToMap((String) catedetail.get("body"));
+								List<Map<String, Object>> subcategories = (List<Map<String, Object>>) catedetailbody.get("subcategories");
+								for (Map<String, Object> map3 : subcategories) {
+									if(secondCate.get(map3.get("id"))!=null){
+										secondCate.put(map3.get("id"), map2);
+									}
+									System.out.println(map3);
+								}
+							}
+						}
+					}
+					
 				}
 			}
 		}
