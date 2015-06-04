@@ -13,12 +13,19 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
+
+import com.qzy.cn.entity.sys.Resources;
+import com.qzy.cn.entity.sys.Role;
+import com.qzy.cn.service.sys.ResourcesService;
+import com.qzy.cn.service.sys.RoleService;
 
 /*
  * 
@@ -39,10 +46,10 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
 	 */
 	private static final Logger logger = Logger.getLogger(InvocationSecurityMetadataSourceService.class);
 
-//	@Autowired
-//	private RoleService roleService;
-//	@Autowired
-//	private ResourcesService resourcesService;;
+	@Autowired
+	private RoleService roleService;
+	@Autowired
+	private ResourcesService resourcesService;;
 
 	// private UrlMatcher urlMatcher = new AntUrlPathMatcher();
 	// private RequestMatcher requestMatcher = new AntPathRequestMatcher();
@@ -69,17 +76,17 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
 		// }
 		// }
 
-//		List<Resources> resourcees = resourcesService.loadAll();
-//		if(resourcees != null){
-//			for (Resources resources : resourcees) {
-//				Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
-//				for (Role role : roleService.loadByResources(resources.getId())) {
-//					ConfigAttribute ca = new SecurityConfig(role.getName());
-//					atts.add(ca);
-//				}
-//				this.resourceMap.put(resources.getUri(), atts);
-//			}
-//		}
+		List<Resources> resourcees = resourcesService.loadAll();
+		if(resourcees != null){
+			for (Resources resources : resourcees) {
+				Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
+				for (Role role : roleService.loadByResources(resources.getId())) {
+					ConfigAttribute ca = new SecurityConfig(role.getName());
+					atts.add(ca);
+				}
+				this.resourceMap.put(resources.getUri(), atts);
+			}
+		}
 
 		/*
 		 * //通过硬编码设置，resouce和role resourceMap = new HashMap<String,

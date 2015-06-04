@@ -36,9 +36,22 @@
               </div>
               <div class="space-4"></div>
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="form-field-1"> <span class="red">*</span> 链接：</label>
+                <label class="col-sm-2 control-label" for="form-field-1"> <span class="red">*</span> 实体类型：</label>
                 <div class="col-sm-4">
-                  <input type="text"  id="advLinkAddress" class="col-xs-12 col-sm-12" name="advLinkAddress" value="${(info.advLinkAddress)!''}"  >
+                  <select name="advType">
+                  	<#list enums['com.qzy.cn.conf.enums.AdvertiseTypeEnum']? values as advertiseTypeEnum>
+                  	<option <#if info.advType?has_content && info.advType == advertiseTypeEnum.advertiseCode>selected</#if> value="${advertiseTypeEnum.advertiseCode}">${advertiseTypeEnum.advertiseDesc}</option>
+                  	</#list>
+                  </select>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                </div>
+              </div>
+              <div class="space-4"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="form-field-1"> <span class="red">*</span> 实体ID：</label>
+                <div class="col-sm-4">
+                  <input type="text"  id="advrefId" class="col-xs-12 col-sm-12" name="advrefId" value="${(info.advrefId)!''}"  >
                 </div>
                 <div class="help-block col-xs-12 col-sm-reset inline">
                 </div>
@@ -58,7 +71,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="form-field-1"> 排序：</label>
                 <div class="col-sm-2">
-                  <input type="text" id="form-field-1" class="col-xs-12 col-sm-12" name="advType" value="${(info.advType)!''}" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                  <input type="text" id="form-field-1" class="col-xs-12 col-sm-12" name="orderSort" value="${(info.orderSort)!''}" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
                 </div>
                 <div class="help-block col-xs-12 col-sm-reset inline">
                   值越小，排序越靠前（1-99,默认为0）

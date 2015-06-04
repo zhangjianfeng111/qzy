@@ -28,6 +28,6 @@
 	<!-- service -->
 	<import resource="applicationContext-service.xml" />
 	<import resource="../applicationContext-soap.xml" />
-<!-- 	<import resource="spring-task.xml" /> -->
-<!-- 	<import resource="security4.0_JPA.xml" /> -->
+	<import resource="spring-task.xml" />
+	<import resource="security4.0_JPA.xml" />
 </beans>

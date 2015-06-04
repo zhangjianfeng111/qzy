@@ -63,9 +63,9 @@
                                     </label>
                                   </th>
                                   <th>图片</th>
-                           
                                   <th>标题</th>
-                                  <th>链接</th>
+                                  <th>类型</th>
+                                  <th>实体ID</th>
                                   <th>操作</th>
                                 </tr>
                               </thead>
@@ -83,7 +83,12 @@
 								  <td><img src="${request.contextPath}/resources/admin/store/${info.advImg}" width="80"/></td>
                                   
                                   <td>${info.advName}</td>
-                                  <td>${info.advLinkAddress}</td>
+                                  <#list enums['com.qzy.cn.conf.enums.AdvertiseTypeEnum']? values as advertiseTypeEnum>
+                                    <#if info.advType?has_content && info.advType == advertiseTypeEnum.advertiseCode>
+				                  	 <td>${advertiseTypeEnum.advertiseDesc}</td>
+				                  	</#if>
+				                  </#list>
+                                  <td>${info.advrefId}</td>
                                   
                                   <td>
                                     <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">

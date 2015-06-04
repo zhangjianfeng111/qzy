@@ -87,6 +87,8 @@ public class TestSoap {
 		}
 //		System.out.println(JsonMapper.beanToMap(obj));
 	}
+	
+	
 
 	@SuppressWarnings("serial")
 	public static HttpHeaders createHeaders(final String username, final String password) {

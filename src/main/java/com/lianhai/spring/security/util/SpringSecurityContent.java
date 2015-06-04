@@ -50,11 +50,11 @@ public class SpringSecurityContent {
 	 * 
 	 * @return
 	 */
-//	public static Integer getUserId() {
-//		if (getUser() != null) {
-//			return getUser().getId().intValue();
-//		}
-//		return null;
-//	}
+	public static Integer getUserId() {
+		if (getUser() != null) {
+			return getUser().getId().intValue();
+		}
+		return null;
+	}
 
 }

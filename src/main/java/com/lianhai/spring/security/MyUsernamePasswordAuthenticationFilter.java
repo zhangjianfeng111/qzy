@@ -8,9 +8,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.qzy.cn.entity.sys.SysUser;
+import com.qzy.cn.utils.PasswordUtils;
 
 /* 
  *  
@@ -70,15 +74,15 @@ public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
 	
 		logger.info("=========>username:"+username +"----passwod:"+password);
 		// 验证用户账号与密码是否对应
-//		username = username.trim();
-//		SysUser manager = this.myUserDetailsService.loadByUserName(username);
-//		
-//		if(manager == null) {
-//			throw new AuthenticationServiceException("账号不存在");
-//		}
+		username = username.trim();
+		SysUser manager = this.myUserDetailsService.loadByUserName(username);
+		
+		if(manager == null) {
+			throw new AuthenticationServiceException("账号不存在");
+		}
 		//String  str = WebAttributes.AUTHENTICATION_EXCEPTION;
 		//WebAttributes.AUTHENTICATION_EXCEPTION;
-//		if ( !PasswordUtils.validPassword(manager.getPassword(), password)) {
+		if ( !PasswordUtils.validPassword(manager.getPassword(), password)) {
 //			/*
 //			 * 在我们配置的simpleUrlAuthenticationFailureHandler处理登录失败的处理类在这么一段
 //			 * 这样我们可以在登录失败后，向用户提供相应的信息。 if (forwardToDestination) {
@@ -91,19 +95,18 @@ public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
 //			 * ).setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION,
 //			 * exception); } }
 //			 */
-//			throw new AuthenticationServiceException("密码错误！");
-//		}
-		return null;
+			throw new AuthenticationServiceException("密码错误！");
+		}
 
 		// UsernamePasswordAuthenticationToken实现 Authentication
-//		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
+		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
 		// Place the last username attempted into HttpSession for views
 		// 允许子类设置详细属性
-//		setDetails(request, authRequest);
+		setDetails(request, authRequest);
 
 		// 运行UserDetailsService的loadUserByUsername 再次封装Authentication
-//		return this.getAuthenticationManager()
-//				.authenticate(authRequest);
+		return this.getAuthenticationManager()
+				.authenticate(authRequest);
 	}
 	
 	
