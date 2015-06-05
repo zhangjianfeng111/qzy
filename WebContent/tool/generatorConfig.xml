@@ -32,7 +32,7 @@
 			enableCountByExample="false" enableUpdateByExample="false"
 			escapeWildcards="true">
 		</table> -->
-		 <table tableName="region" modelType="flat" domainObjectName="sys.Region"
+		 <table tableName="product_info" modelType="flat" domainObjectName="pro.ProductInfo"
 			enableInsert="true" enableSelectByPrimaryKey="true"
 			enableSelectByExample="false" enableUpdateByPrimaryKey="true"
 			enableDeleteByPrimaryKey="true" enableDeleteByExample="false"

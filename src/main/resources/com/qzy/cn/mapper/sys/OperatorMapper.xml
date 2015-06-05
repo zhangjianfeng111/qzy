@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qzy.cn.mapper.sys.OperatorMapper">
+  <resultMap id="BaseResultMap" type="com.qzy.cn.entity.sys.Operator">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="public_name" jdbcType="VARCHAR" property="publicName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="image_logo" jdbcType="VARCHAR" property="imageLogo" />
+    <result column="images" jdbcType="VARCHAR" property="images" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="more1" jdbcType="VARCHAR" property="more1" />
+    <result column="more2" jdbcType="VARCHAR" property="more2" />
+    <result column="more3" jdbcType="INTEGER" property="more3" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qzy.cn.entity.sys.Operator">
+    <result column="summary" jdbcType="LONGVARCHAR" property="summary" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, operator_id, name, public_name, description, image_logo, images, address, quantity, 
+    create_time, create_user, update_time, update_user, more1, more2, more3
+  </sql>
+  <sql id="Blob_Column_List">
+    summary
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from operator
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from operator
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qzy.cn.entity.sys.Operator">
+    insert into operator (id, operator_id, name, 
+      public_name, description, image_logo, 
+      images, address, quantity, 
+      create_time, create_user, update_time, 
+      update_user, more1, more2, 
+      more3, summary)
+    values (#{id,jdbcType=INTEGER}, #{operatorId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{publicName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{imageLogo,jdbcType=VARCHAR}, 
+      #{images,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{more1,jdbcType=VARCHAR}, #{more2,jdbcType=VARCHAR}, 
+      #{more3,jdbcType=INTEGER}, #{summary,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qzy.cn.entity.sys.Operator">
+    insert into operator
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="operatorId != null">
+        operator_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="publicName != null">
+        public_name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="imageLogo != null">
+        image_logo,
+      </if>
+      <if test="images != null">
+        images,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="more1 != null">
+        more1,
+      </if>
+      <if test="more2 != null">
+        more2,
+      </if>
+      <if test="more3 != null">
+        more3,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="publicName != null">
+        #{publicName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="imageLogo != null">
+        #{imageLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="more1 != null">
+        #{more1,jdbcType=VARCHAR},
+      </if>
+      <if test="more2 != null">
+        #{more2,jdbcType=VARCHAR},
+      </if>
+      <if test="more3 != null">
+        #{more3,jdbcType=INTEGER},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qzy.cn.entity.sys.Operator">
+    update operator
+    <set>
+      <if test="operatorId != null">
+        operator_id = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="publicName != null">
+        public_name = #{publicName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="imageLogo != null">
+        image_logo = #{imageLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="more1 != null">
+        more1 = #{more1,jdbcType=VARCHAR},
+      </if>
+      <if test="more2 != null">
+        more2 = #{more2,jdbcType=VARCHAR},
+      </if>
+      <if test="more3 != null">
+        more3 = #{more3,jdbcType=INTEGER},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qzy.cn.entity.sys.Operator">
+    update operator
+    set operator_id = #{operatorId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      public_name = #{publicName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      image_logo = #{imageLogo,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      more1 = #{more1,jdbcType=VARCHAR},
+      more2 = #{more2,jdbcType=VARCHAR},
+      more3 = #{more3,jdbcType=INTEGER},
+      summary = #{summary,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qzy.cn.entity.sys.Operator">
+    update operator
+    set operator_id = #{operatorId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      public_name = #{publicName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      image_logo = #{imageLogo,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      more1 = #{more1,jdbcType=VARCHAR},
+      more2 = #{more2,jdbcType=VARCHAR},
+      more3 = #{more3,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

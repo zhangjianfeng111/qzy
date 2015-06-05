@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzy.cn.mapper.pro.ProductInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.qzy.cn.entity.pro.ProductInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_from" property="productFrom" jdbcType="VARCHAR" />
+    <result column="image_logo" property="imageLogo" jdbcType="VARCHAR" />
+    <result column="images" property="images" jdbcType="VARCHAR" />
+    <result column="booking_required" property="bookingRequired" jdbcType="VARCHAR" />
+    <result column="retail_price" property="retailPrice" jdbcType="DOUBLE" />
+    <result column="hot_deal_expiry_date" property="hotDealExpiryDate" jdbcType="TIMESTAMP" />
+    <result column="order_sort" property="orderSort" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="audit_status" property="auditStatus" jdbcType="VARCHAR" />
+    <result column="is_use" property="isUse" jdbcType="TINYINT" />
+    <result column="back_price" property="backPrice" jdbcType="DOUBLE" />
+    <result column="into_price" property="intoPrice" jdbcType="DOUBLE" />
+    <result column="stock" property="stock" jdbcType="INTEGER" />
+    <result column="country" property="country" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="cate" property="cate" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="more1" property="more1" jdbcType="VARCHAR" />
+    <result column="more2" property="more2" jdbcType="VARCHAR" />
+    <result column="more3" property="more3" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qzy.cn.entity.pro.ProductInfo" extends="BaseResultMap" >
+    <result column="booking_notes_required" property="bookingNotesRequired" jdbcType="LONGVARCHAR" />
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="hot_deal_message" property="hotDealMessage" jdbcType="LONGVARCHAR" />
+    <result column="more_info" property="moreInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, product_id, product_name, product_from, image_logo, images, booking_required, 
+    retail_price, hot_deal_expiry_date, order_sort, status, audit_status, is_use, back_price, 
+    into_price, stock, country, state, city, address, cate, create_time, create_user, 
+    update_time, update_user, more1, more2, more3
+  </sql>
+  <sql id="Blob_Column_List" >
+    booking_notes_required, description, hot_deal_message, more_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qzy.cn.entity.pro.ProductInfo" >
+    insert into product_info (id, product_id, product_name, 
+      product_from, image_logo, images, 
+      booking_required, retail_price, hot_deal_expiry_date, 
+      order_sort, status, audit_status, 
+      is_use, back_price, into_price, 
+      stock, country, state, 
+      city, address, cate, 
+      create_time, create_user, update_time, 
+      update_user, more1, more2, 
+      more3, booking_notes_required, description, 
+      hot_deal_message, more_info)
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
+      #{productFrom,jdbcType=VARCHAR}, #{imageLogo,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, 
+      #{bookingRequired,jdbcType=VARCHAR}, #{retailPrice,jdbcType=DOUBLE}, #{hotDealExpiryDate,jdbcType=TIMESTAMP}, 
+      #{orderSort,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{auditStatus,jdbcType=VARCHAR}, 
+      #{isUse,jdbcType=TINYINT}, #{backPrice,jdbcType=DOUBLE}, #{intoPrice,jdbcType=DOUBLE}, 
+      #{stock,jdbcType=INTEGER}, #{country,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{city,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{cate,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{more1,jdbcType=VARCHAR}, #{more2,jdbcType=VARCHAR}, 
+      #{more3,jdbcType=INTEGER}, #{bookingNotesRequired,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}, 
+      #{hotDealMessage,jdbcType=LONGVARCHAR}, #{moreInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qzy.cn.entity.pro.ProductInfo" >
+    insert into product_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productFrom != null" >
+        product_from,
+      </if>
+      <if test="imageLogo != null" >
+        image_logo,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+      <if test="bookingRequired != null" >
+        booking_required,
+      </if>
+      <if test="retailPrice != null" >
+        retail_price,
+      </if>
+      <if test="hotDealExpiryDate != null" >
+        hot_deal_expiry_date,
+      </if>
+      <if test="orderSort != null" >
+        order_sort,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="isUse != null" >
+        is_use,
+      </if>
+      <if test="backPrice != null" >
+        back_price,
+      </if>
+      <if test="intoPrice != null" >
+        into_price,
+      </if>
+      <if test="stock != null" >
+        stock,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="cate != null" >
+        cate,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="more1 != null" >
+        more1,
+      </if>
+      <if test="more2 != null" >
+        more2,
+      </if>
+      <if test="more3 != null" >
+        more3,
+      </if>
+      <if test="bookingNotesRequired != null" >
+        booking_notes_required,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="hotDealMessage != null" >
+        hot_deal_message,
+      </if>
+      <if test="moreInfo != null" >
+        more_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productFrom != null" >
+        #{productFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="imageLogo != null" >
+        #{imageLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingRequired != null" >
+        #{bookingRequired,jdbcType=VARCHAR},
+      </if>
+      <if test="retailPrice != null" >
+        #{retailPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="hotDealExpiryDate != null" >
+        #{hotDealExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSort != null" >
+        #{orderSort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="backPrice != null" >
+        #{backPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="intoPrice != null" >
+        #{intoPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cate != null" >
+        #{cate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="more1 != null" >
+        #{more1,jdbcType=VARCHAR},
+      </if>
+      <if test="more2 != null" >
+        #{more2,jdbcType=VARCHAR},
+      </if>
+      <if test="more3 != null" >
+        #{more3,jdbcType=INTEGER},
+      </if>
+      <if test="bookingNotesRequired != null" >
+        #{bookingNotesRequired,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="hotDealMessage != null" >
+        #{hotDealMessage,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="moreInfo != null" >
+        #{moreInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qzy.cn.entity.pro.ProductInfo" >
+    update product_info
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productFrom != null" >
+        product_from = #{productFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="imageLogo != null" >
+        image_logo = #{imageLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingRequired != null" >
+        booking_required = #{bookingRequired,jdbcType=VARCHAR},
+      </if>
+      <if test="retailPrice != null" >
+        retail_price = #{retailPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="hotDealExpiryDate != null" >
+        hot_deal_expiry_date = #{hotDealExpiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSort != null" >
+        order_sort = #{orderSort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        is_use = #{isUse,jdbcType=TINYINT},
+      </if>
+      <if test="backPrice != null" >
+        back_price = #{backPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="intoPrice != null" >
+        into_price = #{intoPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="stock != null" >
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cate != null" >
+        cate = #{cate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="more1 != null" >
+        more1 = #{more1,jdbcType=VARCHAR},
+      </if>
+      <if test="more2 != null" >
+        more2 = #{more2,jdbcType=VARCHAR},
+      </if>
+      <if test="more3 != null" >
+        more3 = #{more3,jdbcType=INTEGER},
+      </if>
+      <if test="bookingNotesRequired != null" >
+        booking_notes_required = #{bookingNotesRequired,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="hotDealMessage != null" >
+        hot_deal_message = #{hotDealMessage,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="moreInfo != null" >
+        more_info = #{moreInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qzy.cn.entity.pro.ProductInfo" >
+    update product_info
+    set product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_from = #{productFrom,jdbcType=VARCHAR},
+      image_logo = #{imageLogo,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      booking_required = #{bookingRequired,jdbcType=VARCHAR},
+      retail_price = #{retailPrice,jdbcType=DOUBLE},
+      hot_deal_expiry_date = #{hotDealExpiryDate,jdbcType=TIMESTAMP},
+      order_sort = #{orderSort,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      is_use = #{isUse,jdbcType=TINYINT},
+      back_price = #{backPrice,jdbcType=DOUBLE},
+      into_price = #{intoPrice,jdbcType=DOUBLE},
+      stock = #{stock,jdbcType=INTEGER},
+      country = #{country,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      cate = #{cate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      more1 = #{more1,jdbcType=VARCHAR},
+      more2 = #{more2,jdbcType=VARCHAR},
+      more3 = #{more3,jdbcType=INTEGER},
+      booking_notes_required = #{bookingNotesRequired,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      hot_deal_message = #{hotDealMessage,jdbcType=LONGVARCHAR},
+      more_info = #{moreInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qzy.cn.entity.pro.ProductInfo" >
+    update product_info
+    set product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_from = #{productFrom,jdbcType=VARCHAR},
+      image_logo = #{imageLogo,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      booking_required = #{bookingRequired,jdbcType=VARCHAR},
+      retail_price = #{retailPrice,jdbcType=DOUBLE},
+      hot_deal_expiry_date = #{hotDealExpiryDate,jdbcType=TIMESTAMP},
+      order_sort = #{orderSort,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      is_use = #{isUse,jdbcType=TINYINT},
+      back_price = #{backPrice,jdbcType=DOUBLE},
+      into_price = #{intoPrice,jdbcType=DOUBLE},
+      stock = #{stock,jdbcType=INTEGER},
+      country = #{country,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      cate = #{cate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      more1 = #{more1,jdbcType=VARCHAR},
+      more2 = #{more2,jdbcType=VARCHAR},
+      more3 = #{more3,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
