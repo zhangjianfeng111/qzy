@@ -220,4 +220,56 @@
       more3 = #{more3,jdbcType=VARCHAR}
     where region_id = #{regionId,jdbcType=INTEGER}
   </update>
+  <select id="query" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from region
+    where 1 = 1 
+        <if test="name != null" >and
+        name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="regionCode != null" >and
+        region_code = #{regionCode,jdbcType=VARCHAR}
+      </if>
+      <if test="parentId != null" >and
+        parent_id = #{parentId,jdbcType=INTEGER}
+      </if>
+      <if test="orderSort != null" >and
+        order_sort = #{orderSort,jdbcType=INTEGER}
+      </if>
+      <if test="imageLogo != null" >and
+        image_logo = #{imageLogo,jdbcType=VARCHAR}
+      </if>
+      <if test="images != null" >and
+        images = #{images,jdbcType=VARCHAR}
+      </if>
+      <if test="quantity != null" >and
+        quantity = #{quantity,jdbcType=INTEGER}
+      </if>
+      <if test="isUse != null" >and
+        is_use = #{isUse,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null" >and
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createUser != null" >and
+        create_user = #{createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTime != null" >and
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateUser != null" >and
+        update_user = #{updateUser,jdbcType=VARCHAR}
+      </if>
+      <if test="more1 != null" >and
+        more1 = #{more1,jdbcType=VARCHAR}
+      </if>
+      <if test="more2 != null" >and
+        more2 = #{more2,jdbcType=INTEGER}
+      </if>
+      <if test="more3 != null" >and
+        more3 = #{more3,jdbcType=VARCHAR}
+      </if>
+
+  </select>
 </mapper>

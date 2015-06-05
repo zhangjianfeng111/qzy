@@ -9,6 +9,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -46,12 +47,16 @@ import org.springframework.ws.soap.SoapMessage;
 import org.springframework.ws.soap.saaj.SaajSoapMessage;
 import org.springframework.xml.transform.StringSource;
 
+import com.qzy.cn.entity.pro.ProductInfo;
 import com.qzy.cn.entity.pro.RegionWithCategory;
 import com.qzy.cn.entity.pro.Category;
+import com.qzy.cn.entity.sys.Operator;
 import com.qzy.cn.entity.sys.Region;
 import com.qzy.cn.service.SequenceService;
 import com.qzy.cn.service.pro.CategoryService;
+import com.qzy.cn.service.pro.ProductInfoService;
 import com.qzy.cn.service.pro.RegionWithCategoryService;
+import com.qzy.cn.service.sys.OperatorService;
 import com.qzy.cn.service.sys.RegionService;
 import com.qzy.cn.utils.JsonMapper;
 
@@ -65,10 +70,12 @@ public class TestSoap {
 
 	// private static final String MESSAGE =
 	// "<message xmlns=\"http://tempuri.org\">Hello Web Service World</message>";
-
+	@Autowired
+	ProductInfoService productInfoService;
 	@Autowired
 	private WebServiceTemplate webServiceTemplate;
-	
+	@Autowired
+	OperatorService operatorService;
 	@Autowired
 	RegionService regionService;
 	@Autowired
@@ -210,43 +217,47 @@ public class TestSoap {
 		if(map.get("statusCode").equals("OK")){
 			Map<Object, Object> result = JsonMapper.readStringValueToMap((String) map.get("body"));
 			List<Map<String, Object>> list = (List<Map<String, Object>>)result.get("regions");
-			for (Map<String, Object> map1 : list) {
-				System.out.println(map1);
-				
-				RegionWithCategory regionwithcate = new RegionWithCategory();
-				Region region = new Region();
-				region.setRegionId(Integer.parseInt(map1.get("id").toString()));
-				region.setRegionCode(regionNo());
-				region.setName(map1.get("name").toString());
-				region.setMore1(map1.get("urlSegment").toString());
-				regionwithcate.setRegionId(Integer.parseInt(map1.get("id").toString()));
-				regionService.isSave(region);
+			
+			List<Region> regionlist = regionService.findAll();
+			for (Region region : regionlist) {
+//				System.out.println(map1);
+//				RegionWithCategory regionwithcate = new RegionWithCategory();
+//				Region region = new Region();
+//				region.setRegionId(Integer.parseInt(map1.get("id").toString()));
+//				region.setRegionCode(regionNo());
+//				region.setName(map1.get("name").toString());
+//				region.setMore1(map1.get("urlSegment").toString());
+//				regionwithcate.setRegionId(Integer.parseInt(map1.get("id").toString()));
+//				regionService.isSave(region);
 				
 				String uri = "http://vtour.experienceoz.com.au/api/";
-				uri = uri + map1.get("urlSegment");
+				uri = uri + region.getMore1();
 				System.out.println(uri);
 				Object objdetail = restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<Object>(hds), String.class);
 				Map<String, Object> mapdetail = JsonMapper.beanToMap(objdetail);
 				if(mapdetail.get("statusCode").equals("OK")){
 					Map<Object, Object> resultdetail = JsonMapper.readStringValueToMap((String) mapdetail.get("body"));
 					List<Map<String, Object>> list1 = (List<Map<String, Object>>) resultdetail.get("categories");
+//					List<Category> categorylist = categoryService.findAll();//所有一级分类
 					if(list!=null){
 						for (Map<String, Object> map2 : list1) {
-							if(firstCate.get(map2.get("id"))==null){
-								firstCate.put(map2.get("id"), map2);
+//							if(firstCate.get(map2.get("id"))==null){
+//								firstCate.put(map2.get("id"), map2);
 								
-								Category category = new Category();
-								category.setCateId(Integer.parseInt(map2.get("id").toString()));
-								category.setParentId(0);
-								category.setCateCode(cateNo());
-								category.setCateName(map2.get("name").toString());
-								category.setMore1(map2.get("urlSegment").toString());
-								categoryService.isSave(category);
-							}
-							regionwithcate.setCateId(Integer.parseInt(map2.get("id").toString()));
-							regionwithcate.setId(null);
-							regionWithCategoryService.isSave(regionwithcate);
-							
+//								Category category = new Category();
+//								category.setCateId(Integer.parseInt(map2.get("id").toString()));
+//								category.setParentId(0);
+//								category.setCateCode(cateNo());
+//								category.setCateName(map2.get("name").toString());
+//								category.setMore1(map2.get("urlSegment").toString());
+//								categoryService.isSave(category);
+//							}
+//							RegionWithCategory regionwithcate = new RegionWithCategory();
+//							regionwithcate.setRegionId(region.getRegionId());
+//							regionwithcate.setCateId(Integer.parseInt(map2.get("id").toString()));
+//							regionwithcate.setId(null);
+//							regionWithCategoryService.isSave(regionwithcate);
+//							
 							String uricate = uri + "/";
 							uricate = uricate + map2.get("urlSegment");
 							System.out.println(uricate);
@@ -255,27 +266,66 @@ public class TestSoap {
 							if(catedetail.get("statusCode").equals("OK")){
 								if(!catedetail.get("body").toString().startsWith("<!DOCTYPE html>")){
 									Map<Object, Object> catedetailbody = JsonMapper.readStringValueToMap((String) catedetail.get("body"));
-									List<Map<String, Object>> subcategories = (List<Map<String, Object>>) catedetailbody.get("subcategories");
-									for (Map<String, Object> map3 : subcategories) {
-										if(secondCate.get(map3.get("id"))!=null){
-										secondCate.put(map3.get("id"), map2);
-										
-										Category category1 = new Category();
-										category1.setParentId(Integer.parseInt(map2.get("id").toString()));//父类id
-										category1.setCateId(Integer.parseInt(map3.get("id").toString()));
-										category1.setCateCode(cateNo());
-										category1.setCateName(map3.get("name").toString());
-										category1.setMore1(map3.get("urlSegment").toString());
-										categoryService.isSave(category1);
-										
+									List<Map<String, Object>> operators = (List<Map<String, Object>>) catedetailbody.get("operators");
+									for (Map<String, Object> map3 : operators) {
+										// Operator operator = new Operator();
+										// operator.setOperatorId(Integer.parseInt(map3.get("id").toString()));
+										// if(map3.get("publicName")==null)
+										// operator.setPublicName(null);
+										// else
+										// operator.setPublicName(map3.get("publicName").toString());
+										// operator.setName(map3.get("name").toString());
+										// operator.setSummary(map3.get("summary").toString());
+										// operator.setMore1(map3.get("urlSegment").toString());
+										// operator.setQuantity(Integer.parseInt(catedetailbody.get("quantity").toString()));
+										// operatorService.save(operator);
+
+										// Category category1 = new
+										// Category();//二级分类
+										// category1.setParentId(Integer.parseInt(catedetailbody.get("id").toString()));//父类id
+										// category1.setCateId(Integer.parseInt(map3.get("id").toString()));
+										// category1.setCateCode(cateNo());
+										// category1.setCateName(map3.get("name").toString());
+										// category1.setMore1(map3.get("urlSegment").toString());
+										// categoryService.isSave(category1);
+										String uricate1 = uricate + "/";
+										uricate1 = uricate1 + map3.get("urlSegment");
+										System.out.println(uricate1);
+//										int i=0;
+//										if(uricate1=="http://vtour.experienceoz.com.au/api/launceston/activities/hollybank-treetops-adventure"){
+//											i=1;
+//										}
+//										if(i==1){
+										Object product = restTemplate.exchange(uricate1, HttpMethod.GET, new HttpEntity<Object>(hds), String.class);
+										Map<String, Object> productInfo = JsonMapper.beanToMap(product);
+										if(catedetail.get("statusCode").equals("OK")){
+											if(!catedetail.get("body").toString().startsWith("<!DOCTYPE html>")){
+												Map<Object, Object> productbody = JsonMapper.readStringValueToMap((String) productInfo.get("body"));
+												List<Map<String, Object>> products = (List<Map<String, Object>>) productbody.get("products");
+												for (Map<String, Object> map4 : products) {
+													ProductInfo productinfo = new ProductInfo();
+													productinfo.setProductId(Integer.parseInt(map4.get("id").toString()));
+													productinfo.setProductName(map4.get("name").toString());
+													productinfo.setMore1(map4.get("urlSegment").toString());
+													productinfo.setRetailPrice(Double.parseDouble(map4.get("retailPrice").toString()));
+													productinfo.setImages(map4.get("image").toString());
+													productinfo.setCate(map2.get("id").toString());
+													if(map4.get("hotDealMessage")!=null)
+														productinfo.setHotDealMessage(map4.get("hotDealMessage").toString());
+													else
+														productinfo.setHotDealMessage(null);
+													productInfoService.save(productinfo);
+												}
+											}
+//										}
+										}
 									}
-									System.out.println(map3);
-								}
+									
 								}
 							}
 						}
 					}
-					
+//					
 				}
 			}
 		}
