@@ -292,7 +292,7 @@ public class TestSoap {
 										uricate1 = uricate1 + map3.get("urlSegment");
 										System.out.println(uricate1);
 //										int i=0;
-//										if(uricate1=="http://vtour.experienceoz.com.au/api/launceston/activities/hollybank-treetops-adventure"){
+//										if(uricate1=="http://vtour.experienceoz.com.au/api/melbourne/tours/phillip-island-penguins-and-australian-wildlife-park-tour-from-melbourne"){
 //											i=1;
 //										}
 //										if(i==1){
